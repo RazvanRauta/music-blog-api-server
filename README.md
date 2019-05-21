@@ -1,2 +1,2 @@
 # music-blog-api-server
-Symfony based api server
+Symfony 4.2 based api server
