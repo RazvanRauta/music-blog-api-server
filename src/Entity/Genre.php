@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author Razvan Rauta
+ * 21.05.2019
+ * 19:31
+ */
+
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
