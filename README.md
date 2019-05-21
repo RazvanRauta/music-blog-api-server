@@ -1,7 +1,7 @@
 ## music-blog-api-server
 Symfony 4.2 based api server
 
-##Install
+## Install
 
 #### Define database(MySql) connection in `.env` file line 27:
 
