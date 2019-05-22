@@ -49,7 +49,7 @@ class Genre
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"post", "get-song-with-user"})
+     * @Groups({"get","post", "get-song-with-user","songs"})
      * @Assert\NotBlank()
      * @Assert\Length(min=2)
      */
