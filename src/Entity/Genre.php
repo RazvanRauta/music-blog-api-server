@@ -11,9 +11,31 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     itemOperations={
+ *         "get"={
+ *             "normalization_context"={
+ *                 "groups"={"get-song-with-user"}
+ *             }
+ *          },
+ *         "put"={
+ *             "access_control"="is_granted('ROLE_ADMIN') or (is_granted('ROLE_SUPERADMIN') and object.getUser() == user)"
+ *         }
+ *     },
+ *     collectionOperations={
+ *         "get",
+ *         "post"={
+ *             "access_control"="is_granted('ROLE_ADMIN')"
+ *         }
+ *     },
+ *     denormalizationContext={
+ *         "groups"={"post"}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\GenreRepository")
  */
 class Genre
@@ -27,6 +49,9 @@ class Genre
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"post", "get-song-with-user"})
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2)
      */
     private $name;
 

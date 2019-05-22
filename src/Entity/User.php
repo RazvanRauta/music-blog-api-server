@@ -102,16 +102,24 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get", "post", "put", "get-song-with-user"})
+     * @Assert\NotBlank(groups={"post"})
+     * @Assert\Length(min=5, max=255, groups={"post", "put"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"post", "put", "get-admin", "get-owner"})
+     * @Assert\NotBlank(groups={"post"})
+     * @Assert\Email(groups={"post", "put"})
+     * @Assert\Length(min=6, max=255, groups={"post", "put"})
      */
     private $email;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Song", mappedBy="user")
+     * @Groups({"get"})
      */
     private $songs;
 
