@@ -65,10 +65,5 @@ class UserRegisterSubscriber implements EventSubscriberInterface
             $this->passwordEncoder->encodePassword($user, $user->getPassword())
         );
 
-        // Create confirmation token
-        $user->setConfirmationToken(
-            $this->tokenGenerator->getRandomSecureToken()
-        );
-
     }
 }

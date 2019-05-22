@@ -27,5 +27,8 @@ php bin/console doctrine:fixtures:load -q **to load dummy data**
 
 #### http://localhost:8000/api
 
+#### Link to React client repo to:
+
+##### https://github.com/RazvanRauta/music-blog-client
 
 ###### Created by Razvan Rauta

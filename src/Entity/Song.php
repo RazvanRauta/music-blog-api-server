@@ -10,7 +10,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
@@ -114,7 +113,6 @@ class Song implements UserEntityInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="songs")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"get","get-song-with-user","songs"})
-     * @ApiSubresource()
      */
     private $user;
 
@@ -123,7 +121,6 @@ class Song implements UserEntityInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Genre", inversedBy="songs")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"get","post", "get-song-with-user","songs"})
-     * @ApiSubresource()
      */
     private $genre;
 
