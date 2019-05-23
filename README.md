@@ -31,4 +31,8 @@ php bin/console doctrine:fixtures:load -q **to load dummy data**
 
 ##### https://github.com/RazvanRauta/music-blog-client
 
+#### Link to demo server:
+
+#### http://api.gymrat.ro/api
+
 ###### Created by Razvan Rauta
