@@ -10,6 +10,7 @@ namespace App\EventSubscriber;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\Song;
+use DateTime;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
@@ -24,6 +25,10 @@ class PublishedDateEntitySubscriber implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @param GetResponseForControllerResultEvent $event
+     * @throws \Exception
+     */
     public function setDatePublished(GetResponseForControllerResultEvent $event)
     {
         $entity = $event->getControllerResult();
@@ -33,6 +38,6 @@ class PublishedDateEntitySubscriber implements EventSubscriberInterface
             return;
         }
 
-        $entity->setPublished(new \DateTime());
+        $entity->setPublished(new DateTime("now"));
     }
 }

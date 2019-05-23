@@ -9,13 +9,13 @@
 namespace App\EventSubscriber;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
+use App\Entity\User;
 use App\Entity\UserEntityInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class AuthoredEntitySubscriber implements EventSubscriberInterface
 {
@@ -47,13 +47,13 @@ class AuthoredEntitySubscriber implements EventSubscriberInterface
             return;
         }
 
-        /** @var UserInterface $author */
-        $author = $token->getUser();
+        /** @var User $user */
+        $user = $token->getUser();
 
         if (!$entity instanceof UserEntityInterface || Request::METHOD_POST !== $method) {
             return;
         }
 
-        $entity->setAuthor($author);
+        $entity->setUser($user);
     }
 }

@@ -29,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(
  *     OrderFilter::class,
  *     properties={
- *         "id","published","title","artist","year","genre"
+ *         "id","published","title","artist","year","genre","duration"
  *
  *     },
  *     arguments={"orderParameterName"="_order"}
@@ -37,7 +37,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(PropertyFilter::class, arguments={
  *     "parameterName": "properties",
  *     "overrideDefaultProperties": false,
- *     "whitelist": {"id", "artist", "title", "genre", "user"}
+ *     "whitelist": {"id", "artist", "title", "genre", "user", "duration"}
  * })
  * @ApiResource(
  *     attributes={"order"={"published": "DESC"}, "maximum_items_per_page"=20},
@@ -104,7 +104,7 @@ class Song implements UserEntityInterface
     private $duration;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Groups({"post", "get-song-with-user","songs"})
      */
     private $published;
@@ -118,7 +118,7 @@ class Song implements UserEntityInterface
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Genre", inversedBy="songs")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Genre", inversedBy="songs", cascade="persist")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"get","post", "get-song-with-user","songs"})
      */
@@ -182,7 +182,7 @@ class Song implements UserEntityInterface
         return $this->published;
     }
 
-    public function setPublished(\DateTimeInterface $published): self
+    public function setPublished($published): self
     {
         $this->published = $published;
 
@@ -215,15 +215,15 @@ class Song implements UserEntityInterface
         return $this->genre;
     }
 
-    /**
-     * @param Genre $genre
-     */
-    public function setGenre($genre)
+
+    public function setGenre(Genre $genre)
     {
-        $this->genre = $genre;
+
+        $this->genre  = $genre ;
 
         return $this;
     }
+
 
 
 }
